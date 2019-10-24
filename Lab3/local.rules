@@ -1,0 +1,4 @@
+reject icmp any any -> any  any (msg:"Denied ICMP attack.";sid:1000034;)
+reject udp any 161 -> any  any (msg:"Denied ICMP attack.";sid:1000035;)
+reject udp any 162 -> any  any (msg:"Denied ICMP attack.";sid:1000036;)
+

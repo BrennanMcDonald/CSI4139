@@ -1,7 +1,7 @@
 /* global BigInt */
 import React from "react"
 import axios from "axios";
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import BigInt from 'big-integer'
 const values = require("./values.json");
 
@@ -9,7 +9,7 @@ export default class PhoneVerify extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      error: false, 
+      error: false,
       err_msg: "",
       email: "",
       password: "",
@@ -20,7 +20,7 @@ export default class PhoneVerify extends React.Component {
   }
 
   onChange(e) {
-    if (e.target.name === "password"){
+    if (e.target.name === "password") {
       var isnum = /^\d+$/.test(e.target.value);
       if (isnum || e.target.value === "") {
         this.setState({
@@ -37,14 +37,13 @@ export default class PhoneVerify extends React.Component {
   createNewUser() {
     var that = this;
     var alpha = BigInt(values.g).modPow(this.state.password, values.p);
-    console.log(alpha)
-    console.log(values.p)
-    console.log(this.state.password)
-    axios.post('http://127.0.0.1:8080/api/user', null, {params: {
-      email: this.state.email,
-      alpha: alpha.toString(),
-      phonenumber: this.state.phonenumber
-    }})
+    axios.post('http://127.0.0.1:8080/api/user', null, {
+      params: {
+        email: this.state.email,
+        alpha: alpha.toString(),
+        phonenumber: this.state.phonenumber
+      }
+    })
       .then(function (response) {
         console.log(response);
         that.props.history.push("/")
