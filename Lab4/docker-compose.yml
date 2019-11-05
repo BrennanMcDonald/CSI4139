@@ -1,0 +1,12 @@
+web:
+  container_name: lab4_web
+  image: lab4_web
+  ports:
+    - 1337:1337
+  links:
+    - "db"
+db:
+  container_name: lab4_db
+  image: lab4_db
+  ports:
+    - 5432
